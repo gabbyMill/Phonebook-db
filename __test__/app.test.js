@@ -128,7 +128,7 @@ const DUMMY = [
   },
 ];
 
-describe.only("dummyDB", () => {
+describe("dummyDB", () => {
   beforeAll(() => {
     dummyDB.init();
   });
