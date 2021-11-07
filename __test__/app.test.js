@@ -95,7 +95,7 @@ describe("app", () => {
         .post("/api/persons")
         .send({ name: "noam", number: "123-123" });
       expect(res.statusCode).toBe(400);
-      expect(res.body.error).toBe("Number to short number");
+      expect(res.body.error).toBe("Number too short");
       res = await request(app)
         .post("/api/persons")
         .send({ name: "noam", number: "asdasd" });
