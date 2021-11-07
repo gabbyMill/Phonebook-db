@@ -30,22 +30,21 @@ router.get("/persons", (req, res) => {
 });
 
 router.post("/persons", (req, res) => {
-  console.log("post");
   const id = uuid.v4();
   const name = req.body.name;
-  if (!name) {
-    throw { message: "Missing name", status: 400 };
-  }
   const number = req.body.number;
   if (!number) {
     throw { message: "Missing number", status: 400 };
   }
-  if (number.length < 11) {
+  if (!name) {
+    throw { message: "Missing name", status: 400 };
+  }
+  if (number.split("-")[1].length < 7) {
+    throw { message: "Number too short", status: 400 };
+  }
+  if (isNaN(number)) {
     throw { message: "Not a number", status: 400 };
   }
-  // if (isNaN(number)) {
-  //   throw { message: "Number to short number", status: 400 };
-  // }
 
   const obj = {
     id,
