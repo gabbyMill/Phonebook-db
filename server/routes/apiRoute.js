@@ -4,7 +4,6 @@ const dummydb = require("../lib/dummydb.js");
 const uuid = require("uuid");
 
 router.delete("/persons/:id", (req, res) => {
-  console.log("deleting");
   const { id } = req.params;
   if (!dummydb.getSingle(+id)) {
     throw { status: 400, message: "Bad id" };

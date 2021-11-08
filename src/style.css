@@ -21,6 +21,14 @@ td {
   color: darkblue;
 }
 
+.person {
+  display: flex;
+}
+
+.delete {
+  margin: 1rem;
+}
+
 /* table {
   display: flex;
   flex-direction: column;
