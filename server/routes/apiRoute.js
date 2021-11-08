@@ -39,10 +39,16 @@ router.post("/persons", (req, res) => {
   if (!name) {
     throw { message: "Missing name", status: 400 };
   }
+  if (isNaN(req.body.number.split("-")) || !req.body.number.includes("-")) {
+    throw { message: "Not a number", status: 400 };
+  }
+  // else if ( !req.body.number.includes("-")) {
+  //   throw { message: "Number too short", status: 400 };
+  // }
   if (number.split("-")[1].length < 7) {
     throw { message: "Number too short", status: 400 };
   }
-  if (isNaN(number)) {
+  if (isNaN(number.split("-")[0]) || isNaN(number.split("-")[1])) {
     throw { message: "Not a number", status: 400 };
   }
 
