@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dummydb = require("../lib/dummydb.js");
 const uuid = require("uuid");
-const Person = require("../../models/Person.js");
+const { Person } = require("../../models/Person.js");
 
 router.delete("/persons/:id", (req, res) => {
   const { id } = req.params;
@@ -28,7 +28,6 @@ router.get("/persons", async (req, res) => {
 });
 
 router.get("/persons/:id", (req, res) => {
-  console.log(1);
   const { id } = req.params;
   if (!dummydb.getSingle(+id)) {
     throw { status: 400, message: "Bad id" };
@@ -38,7 +37,7 @@ router.get("/persons/:id", (req, res) => {
   }
 });
 
-router.post("/persons", (req, res) => {
+router.post("/persons", async (req, res) => {
   const id = uuid.v4();
   const name = req.body.name;
   const number = req.body.number;
@@ -62,13 +61,15 @@ router.post("/persons", (req, res) => {
     throw { message: "Not a number", status: 400 };
   }
 
-  const obj = {
+  const person = new Person({
     id,
     name,
     number,
-  };
-  dummydb.DUMMY.push(obj);
-  res.json(obj);
+  });
+  // dummydb.DUMMY.push(obj);
+  const personData = await person.save();
+  res.json(personData);
+  // res.json(obj);
 });
 
 module.exports = router;
