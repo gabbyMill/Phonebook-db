@@ -9,22 +9,15 @@ router.delete("/persons/:id", (req, res) => {
     if (!dummydb.getSingle(+id)) {
       throw { status: 400, message: "Bad id" };
     }
+    dummydb.deleteSingle(+id);
   } else {
     // id is not a number hence no prefix '+'
-    console.log(`id: ${id}`);
-    console.log(dummydb.DUMMY[dummydb.DUMMY.length - 1]);
     if (!dummydb.getSingle(id)) {
-      console.log("trouble deleting");
       throw { status: 400, message: "Bad id" };
     } else {
-      console.log("successfully deleting");
       dummydb.deleteSingle(id);
     }
   }
-  dummydb.deleteSingle(+id);
-  // else {
-  //   dummydb.deleteSingle(id); // problem with id on dom ?
-  // }
   res.sendStatus(204);
 });
 
@@ -35,7 +28,6 @@ router.get("/persons/:id", (req, res) => {
   }
   if (+id) {
     res.json(dummydb.getSingle(+id));
-  } else {
   }
 });
 
@@ -52,6 +44,9 @@ router.post("/persons", (req, res) => {
   }
   if (!name) {
     throw { message: "Missing name", status: 400 };
+  }
+  if (number.length > 15) {
+    throw { message: "Number too long", status: 400 };
   }
   if (!req.body.number.includes("-")) {
     // || isNaN(req.body.number.split("-"))
