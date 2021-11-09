@@ -31,8 +31,10 @@ router.get("/persons/:id", (req, res) => {
   }
 });
 
-router.get("/persons", (req, res) => {
-  res.json(dummydb.DUMMY);
+router.get("/persons", async (req, res) => {
+  // res.json(dummydb.DUMMY);
+  const result = await Person.find({});
+  res.json(result);
 });
 
 router.post("/persons", (req, res) => {
