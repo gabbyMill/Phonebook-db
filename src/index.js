@@ -1,30 +1,10 @@
 import "./style.css";
 import axios from "axios";
 import createElement from "./helpers/createElement.js";
-// import wrapper from "../mongo";
-// // wrapper();
 import { addAddListener, addDeleteListener } from "./listeners/addListeners";
 
-// // ## MONGO ## \\
-// const mongoose = require("mongoose");
-
-// const password = process.argv[2];
-
-// const url = `mongodb+srv://fullstack:${password}@cluster0.t49wa.mongodb.net/Phonebook?retryWrites=true&w=majority`;
-
-// mongoose.connect(url);
-
-// const contactSchema = new mongoose.Schema({
-//   name: String,
-//   number: String,
-//   id: String,
-// });
-
-// const Person = mongoose.model("Person", contactSchema);
-
-// //\\ ^^ ## MONGO ## ^^ \\//
-
 // const container = document.querySelector(".container");
+const phonebook = document.querySelector(".phonebook");
 const head = document.querySelector(".t-head");
 const tBody = document.querySelector(".t-body");
 
@@ -47,6 +27,7 @@ const tBody = document.querySelector(".t-body");
     addBtn,
   ]);
   head.append(headRow);
+  console.log(res);
   for (const obj of res.data.DUMMY) {
     const name = createElement("td", ["p-name"], ` ${obj.name}`); // Name:
     const number = createElement("td", ["p-num"], `${obj.number}`); // Number:
