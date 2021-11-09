@@ -1,5 +1,6 @@
 import axios from "axios";
 import createElement from "../helpers/createElement";
+import { addDeleteListener } from "../listeners/addListeners";
 export async function addContact() {
   // value: "value add",
   const name = document.querySelector(".name-input").value;
@@ -21,4 +22,5 @@ export async function addContact() {
     dltBtn,
   ]);
   document.querySelector(".t-body").prepend(pDiv);
+  addDeleteListener();
 }

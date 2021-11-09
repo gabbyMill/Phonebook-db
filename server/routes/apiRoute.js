@@ -5,10 +5,26 @@ const uuid = require("uuid");
 
 router.delete("/persons/:id", (req, res) => {
   const { id } = req.params;
-  if (!dummydb.getSingle(+id)) {
-    throw { status: 400, message: "Bad id" };
+  if (!isNaN(id)) {
+    if (!dummydb.getSingle(+id)) {
+      throw { status: 400, message: "Bad id" };
+    }
+  } else {
+    // id is not a number hence no prefix '+'
+    console.log(`id: ${id}`);
+    console.log(dummydb.DUMMY[dummydb.DUMMY.length - 1]);
+    if (!dummydb.getSingle(id)) {
+      console.log("trouble deleting");
+      throw { status: 400, message: "Bad id" };
+    } else {
+      console.log("successfully deleting");
+      dummydb.deleteSingle(id);
+    }
   }
   dummydb.deleteSingle(+id);
+  // else {
+  //   dummydb.deleteSingle(id); // problem with id on dom ?
+  // }
   res.sendStatus(204);
 });
 
