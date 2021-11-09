@@ -62,6 +62,7 @@ function getSingle(id) {
   for (const obj of DUMMY) {
     if (obj.id === id) return obj;
   }
+  return { error: { status: 400, message: "Bad id" } };
 }
 
 function deleteSingle(id) {

@@ -27,14 +27,11 @@ router.get("/persons", async (req, res) => {
   res.json(response);
 });
 
-router.get("/persons/:id", (req, res) => {
+router.get("/persons/:id", async (req, res) => {
   const { id } = req.params;
-  if (!dummydb.getSingle(+id)) {
-    throw { status: 400, message: "Bad id" };
-  }
-  if (+id) {
-    res.json(dummydb.getSingle(+id));
-  }
+  // used to use getSingle
+  const personData = await Person.findById(id);
+  res.json(personData);
 });
 
 router.post("/persons", async (req, res) => {
@@ -51,7 +48,6 @@ router.post("/persons", async (req, res) => {
     throw { message: "Number too long", status: 400 };
   }
   if (!req.body.number.includes("-")) {
-    // || isNaN(req.body.number.split("-"))
     throw { message: "Not a number", status: 400 };
   }
   if (number.split("-")[1].length < 7) {
@@ -66,10 +62,8 @@ router.post("/persons", async (req, res) => {
     name,
     number,
   });
-  // dummydb.DUMMY.push(obj);
   const personData = await person.save();
   res.json(personData);
-  // res.json(obj);
 });
 
 module.exports = router;
