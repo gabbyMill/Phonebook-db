@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dummydb = require("../lib/dummydb.js");
 const uuid = require("uuid");
+const Person = require("../../models/Person.js");
 
 router.delete("/persons/:id", (req, res) => {
   const { id } = req.params;
@@ -21,7 +22,13 @@ router.delete("/persons/:id", (req, res) => {
   res.sendStatus(204);
 });
 
+router.get("/persons", async (req, res) => {
+  const response = await Person.find({});
+  res.json(response);
+});
+
 router.get("/persons/:id", (req, res) => {
+  console.log(1);
   const { id } = req.params;
   if (!dummydb.getSingle(+id)) {
     throw { status: 400, message: "Bad id" };
@@ -29,10 +36,6 @@ router.get("/persons/:id", (req, res) => {
   if (+id) {
     res.json(dummydb.getSingle(+id));
   }
-});
-
-router.get("/persons", (req, res) => {
-  res.json(dummydb.DUMMY);
 });
 
 router.post("/persons", (req, res) => {

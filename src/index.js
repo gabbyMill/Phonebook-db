@@ -27,7 +27,6 @@ const tBody = document.querySelector(".t-body");
     addBtn,
   ]);
   head.append(headRow);
-  console.log(res);
   for (const obj of res.data.DUMMY) {
     const name = createElement("td", ["p-name"], ` ${obj.name}`); // Name:
     const number = createElement("td", ["p-num"], `${obj.number}`); // Number:
