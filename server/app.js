@@ -4,20 +4,6 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 
-const mongoose = require("mongoose");
-
-const url = `mongodb+srv://fullstack:${`adminisbest`}@cluster0.t49wa.mongodb.net/Phonebook?retryWrites=true&w=majority`;
-
-mongoose.connect(url);
-
-const contactSchema = new mongoose.Schema({
-  name: String,
-  number: String,
-  id: String,
-});
-
-const Person = mongoose.model("Person", contactSchema);
-
 morgan.token("body", req => JSON.stringify(req.body));
 
 const db = require("./routes/homePage.js");
