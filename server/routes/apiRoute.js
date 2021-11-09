@@ -4,19 +4,20 @@ const dummydb = require("../lib/dummydb.js");
 const uuid = require("uuid");
 const { Person } = require("../../models/Person.js");
 
-router.delete("/persons/:id", (req, res) => {
+router.delete("/persons/:id", async (req, res) => {
   const { id } = req.params;
   if (!isNaN(id)) {
     if (!dummydb.getSingle(+id)) {
       throw { status: 400, message: "Bad id" };
     }
-    dummydb.deleteSingle(+id);
+    await Person.deleteOne({ _id: id });
+    // previously used deleteSingle
   } else {
     // id is not a number hence no prefix '+'
     if (!dummydb.getSingle(id)) {
       throw { status: 400, message: "Bad id" };
     } else {
-      dummydb.deleteSingle(id);
+      await Person.deleteOne({ _id: id });
     }
   }
   res.sendStatus(204);
@@ -29,7 +30,7 @@ router.get("/persons", async (req, res) => {
 
 router.get("/persons/:id", async (req, res) => {
   const { id } = req.params;
-  // used to use getSingle
+  // previously used getSingle
   const personData = await Person.findById(id);
   res.json(personData);
 });

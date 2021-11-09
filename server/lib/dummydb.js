@@ -63,6 +63,7 @@ function getSingle(id) {
     if (obj.id === id) return obj;
   }
   return { error: { status: 400, message: "Bad id" } };
+  // not the best, until figuring out how to error handle in mongo
 }
 
 function deleteSingle(id) {
