@@ -17,7 +17,6 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body")
 );
 
-app.use("/", homePage);
 app.use("/info", infoPage);
 app.use("/api", apiRoute);
 app.use(errorHandler);
