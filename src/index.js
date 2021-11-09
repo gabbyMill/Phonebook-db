@@ -9,7 +9,7 @@ const head = document.querySelector(".t-head");
 const tBody = document.querySelector(".t-body");
 
 (async function paintHomePage() {
-  const res = await axios.get(`https://gm-contacts.herokuapp.com/`);
+  const res = await axios.get(`https://gm-contacts.herokuapp.com/db`);
   head.textContent = "";
   tBody.textContent = "";
   const inputName = createElement("input", ["name-input"], null, {
@@ -21,14 +21,13 @@ const tBody = document.querySelector(".t-body");
     type: "text",
   });
   const addBtn = createElement("button", ["add-btn"], "Add"); // value: "value add"
-  const headName = createElement("th", ["head-name"], "Name", null); // [inputName]
-  const headNum = createElement("th", ["head-num"], "Number", null); // [inputNum]
   const headRow = createElement("tr", ["head-row"], null, null, [
     inputName,
     inputNum,
     addBtn,
   ]);
   head.append(headRow);
+  console.log(res);
   for (const obj of res.data.DUMMY) {
     const name = createElement("td", ["p-name"], ` ${obj.name}`); // Name:
     const number = createElement("td", ["p-num"], `${obj.number}`); // Number:

@@ -6,7 +6,7 @@ const cors = require("cors");
 
 morgan.token("body", req => JSON.stringify(req.body));
 
-const homePage = require("./routes/homePage.js");
+const db = require("./routes/homePage.js");
 const infoPage = require("./routes/infoPage.js");
 const apiRoute = require("./routes/apiRoute.js");
 const errorHandler = require("./middleware/errorHandler.js");
@@ -17,6 +17,7 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body")
 );
 
+app.use("/db", db);
 app.use("/info", infoPage);
 app.use("/api", apiRoute);
 app.use(errorHandler);
