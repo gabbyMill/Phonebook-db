@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 
-// const url = `mongodb+srv://fullstack:${``}@cluster0.t49wa.mongodb.net/Phonebook?retryWrites=true&w=majority`;
 const url = process.env.MONGODB_URI;
 
 console.log("connecting to", url);
-
-// mongoose.connect(url);
 
 mongoose
   .connect(url)
@@ -36,6 +33,3 @@ contactSchema.set("toJSON", {
 module.exports = {
   Person,
 };
-
-// contactSchema,
-// mongoose,
