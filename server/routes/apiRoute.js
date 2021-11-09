@@ -24,7 +24,6 @@ router.get("/persons/:id", (req, res) => {
 });
 
 router.get("/persons", (req, res) => {
-  console.log("in persons");
   res.json(dummydb.DUMMY);
 });
 
@@ -38,12 +37,10 @@ router.post("/persons", (req, res) => {
   if (!name) {
     throw { message: "Missing name", status: 400 };
   }
-  if (isNaN(req.body.number.split("-")) || !req.body.number.includes("-")) {
+  if (!req.body.number.includes("-")) {
+    // || isNaN(req.body.number.split("-"))
     throw { message: "Not a number", status: 400 };
   }
-  // else if ( !req.body.number.includes("-")) {
-  //   throw { message: "Number too short", status: 400 };
-  // }
   if (number.split("-")[1].length < 7) {
     throw { message: "Number too short", status: 400 };
   }

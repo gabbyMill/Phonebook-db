@@ -1,7 +1,7 @@
 import "./style.css";
 import axios from "axios";
 import createElement from "./helpers/createElement.js";
-import { addDeleteListener } from "./helpers/addListeners";
+import { addAddListener, addDeleteListener } from "./listeners/addListeners";
 
 // const container = document.querySelector(".container");
 const phonebook = document.querySelector(".phonebook");
@@ -20,7 +20,7 @@ const tBody = document.querySelector(".t-body");
     placeholder: "Phone Number",
     type: "text",
   });
-  const addBtn = createElement("button", ["add-btn"], "Add Text Content"); // value: "value add"
+  const addBtn = createElement("button", ["add-btn"], "Add"); // value: "value add"
   const headName = createElement("th", ["head-name"], "Name", null); // [inputName]
   const headNum = createElement("th", ["head-num"], "Number", null); // [inputNum]
   const headRow = createElement("tr", ["head-row"], null, null, [
@@ -43,4 +43,5 @@ const tBody = document.querySelector(".t-body");
     tBody.append(person);
     addDeleteListener();
   }
+  addAddListener();
 })();
