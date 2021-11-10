@@ -3,13 +3,10 @@ import axios from "axios";
 import createElement from "./helpers/createElement.js";
 import { addAddListener, addDeleteListener } from "./listeners/addListeners";
 
-// const container = document.querySelector(".container");
-const phonebook = document.querySelector(".phonebook");
 const head = document.querySelector(".t-head");
 const tBody = document.querySelector(".t-body");
-
 (async function paintHomePage() {
-  const res = await axios.get(`https://gm-contacts.herokuapp.com/db`);
+  const res = await axios.get(`http://localhost:3000/db`);
   head.textContent = "";
   tBody.textContent = "";
   const inputName = createElement("input", ["name-input"], null, {
@@ -27,7 +24,7 @@ const tBody = document.querySelector(".t-body");
     addBtn,
   ]);
   head.append(headRow);
-  for (const obj of res.data.DUMMY) {
+  for (const obj of res.data) {
     const name = createElement("td", ["p-name"], ` ${obj.name}`); // Name:
     const number = createElement("td", ["p-num"], `${obj.number}`); // Number:
     const btn = createElement("button", ["delete"], "Delete", {
