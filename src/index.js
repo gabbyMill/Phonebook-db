@@ -6,7 +6,7 @@ import { addAddListener, addDeleteListener } from "./listeners/addListeners";
 const head = document.querySelector(".t-head");
 const tBody = document.querySelector(".t-body");
 (async function paintHomePage() {
-  const res = await axios.get(`http://localhost:3000/db`);
+  const res = await axios.get(`https://gm-contacts.herokuapp.com/db`);
   head.textContent = "";
   tBody.textContent = "";
   const inputName = createElement("input", ["name-input"], null, {
