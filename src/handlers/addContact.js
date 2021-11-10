@@ -8,7 +8,10 @@ export async function addContact() {
     name,
     number,
   };
-  const res = await axios.post(`http://localhost:3000/api/persons`, body);
+  const res = await axios.post(
+    `https://gm-contacts.herokuapp.com/api/persons`,
+    body
+  );
   // seperate this block of code into a function named "make person"
   const nameEl = createElement("td", ["p-name"], res.data.name);
   const numEl = createElement("td", ["p-num"], res.data.number);
