@@ -17,7 +17,7 @@ const tBody = document.querySelector(".t-body");
     placeholder: "Phone Number",
     type: "text",
   });
-  const addBtn = createElement("button", ["add-btn"], "Add"); // value: "value add"
+  const addBtn = createElement("button", ["add-btn"], "Add");
   const headRow = createElement("tr", ["head-row"], null, null, [
     inputName,
     inputNum,
@@ -25,8 +25,8 @@ const tBody = document.querySelector(".t-body");
   ]);
   head.append(headRow);
   for (const obj of res.data) {
-    const name = createElement("td", ["p-name"], ` ${obj.name}`); // Name:
-    const number = createElement("td", ["p-num"], `${obj.number}`); // Number:
+    const name = createElement("td", ["p-name"], ` ${obj.name}`);
+    const number = createElement("td", ["p-num"], `${obj.number}`);
     const btn = createElement("button", ["delete"], "Delete", {
       "data-id": obj.id,
     });

@@ -2,7 +2,6 @@ import axios from "axios";
 import createElement from "../helpers/createElement";
 import { addDeleteListener } from "../listeners/addListeners";
 export async function addContact() {
-  // value: "value add",
   const name = document.querySelector(".name-input").value;
   const number = document.querySelector(".num-input").value;
   const body = {
